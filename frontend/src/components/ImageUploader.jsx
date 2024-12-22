@@ -1,7 +1,8 @@
+// src/components/ImageUploader.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function ImageUploader({ setOcrText }) {
+function ImageUploader({ setOcrText, setTranslateText }) {
   const [image, setImage] = useState(null);
 
   const handleImageUpload = async (e) => {
@@ -16,6 +17,7 @@ function ImageUploader({ setOcrText }) {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setOcrText(response.data.extractedText);
+      setTranslateText(response.data.translatedText);
     } catch (error) {
       alert('Failed to extract text. Please try again.');
     }
@@ -23,8 +25,12 @@ function ImageUploader({ setOcrText }) {
 
   return (
     <div className="image-uploader">
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
-      {image && <img src={image} alt="Uploaded Preview" />}
+      <label className="upload-box">
+        Drag & Drop or Click to Upload Image
+        <input type="file" accept="image/*" onChange={handleImageUpload} className="file-input" />
+      </label>
+      {image && <img src={image} alt="Uploaded Preview" className="uploaded-image" />}
+      <button className="upload-button" onClick={() => document.querySelector('.file-input').click()}>Upload Image</button>
     </div>
   );
 }

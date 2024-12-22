@@ -11,5 +11,4 @@ const upload = multer({ dest: 'uploads/' });
 // Routes
 router.post('/ocr', upload.single('image'), extractText);
 router.post('/search', searchQuestion);
-
 export default router;
