@@ -1,7 +1,7 @@
-const express = require('express');
-const multer = require('multer');
-const { extractText } = require('../controllers/ocrController');
-const { searchQuestion } = require('../controllers/searchController');
+import express from 'express';
+import multer from 'multer';
+import { extractText } from '../controllers/ocrController.js';
+import { searchQuestion } from '../controllers/searchController.js';
 
 const router = express.Router();
 
@@ -12,4 +12,4 @@ const upload = multer({ dest: 'uploads/' });
 router.post('/ocr', upload.single('image'), extractText);
 router.post('/search', searchQuestion);
 
-module.exports = router;
+export default router;
