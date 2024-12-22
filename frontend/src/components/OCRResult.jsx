@@ -9,7 +9,7 @@ function OCRResult({ ocrText, translateText, setSearchResults }) {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/api/search', { query: translateText });
+      const response = await axios.post('https://amyfy-backend-chi.vercel.app/api/search', { query: translateText });
       if (response.data.results) {
         setSearchResults(response.data.results);
         {console.log("response.data.results: ", response.data.results)}

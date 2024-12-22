@@ -13,7 +13,7 @@ function ImageUploader({ setOcrText, setTranslateText }) {
     formData.append('image', file);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/ocr', formData, {
+      const response = await axios.post('https://amyfy-backend-chi.vercel.app/api/ocr', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setOcrText(response.data.extractedText);
